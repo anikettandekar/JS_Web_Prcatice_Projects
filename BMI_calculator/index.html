@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+
+    <style>
+        * {
+            background-color: #212121;
+            color: #fff;
+            letter-spacing: 1.5px;
+            word-spacing: 1.5px;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            box-sizing: border-box;
+            justify-self: center;
+        }
+
+        .main {
+            margin: auto;
+            margin-top: 30px;
+            width: 300px;
+            height: 648px;
+            padding: 10px;
+            border: 3px solid;
+            border-style: double;
+            border-color: lightgray;
+        }
+
+        input {
+            width: 80%;
+            margin-top: 10px;
+            border-style: groove;
+            background-color: #212121;
+            color: #fff;
+        }
+
+        #submitBtn{
+            width: 110px;
+            height: 30px;
+            padding: 2px;
+            font-size: 15px;
+            font-weight: bold;
+            border: #fff solid 2px;
+            border-radius: 5px;
+        }
+        
+        #userCategory{
+            padding: 3px;
+            border-style: solid;
+            border-radius: 5px;
+        }
+        #underInfo{
+            padding: 3px;
+            border-style: solid;
+            border-color: blue;
+            border-radius: 5px;
+        }
+        #helthyInfo{
+            padding: 3px;
+            border-style: solid;
+            border-color: green;
+            border-radius: 5px;
+        }
+        #overInfo{
+            padding: 3px;
+            border-style: solid;
+            border-color: yellow;
+            border-radius: 5px;
+        }
+        #obeseInfo{
+            padding: 3px;
+            border-style: solid;
+            border-color: red;
+            border-radius: 5px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="inputDiv">
+            <h2>BMI Calculator</h2><br>
+            <label for="heightInput">Enter height in cm</label>
+            <input id="heightInput" type="text" value="">
+            <br><br><br>
+            <label for="weightInput">Enter weight in kg</label>
+            <input id="weightInput" type="text" value=""><br>
+            <input id="submitBtn" type="button"  value="Calculate">
+        </div>
+        <div class="outputDiv">
+            <br>
+            <p id="outputBMI">BMI: <span>00.0</span> kg/cm<sup>2</sup></p>
+
+            <p id="userCategory"> Your category: <br><span></span></p>
+            <p id="underInfo">Underweight: BMI less than 18.5</p>
+            <p id="helthyInfo">Healthy weight: BMI between 18.5 and 24.</p>
+            <p id="overInfo">Overweight: BMI between 25 and 29.9</p>
+            <p id="obeseInfo">Obese: BMI is 30 or higher</p>
+        </div>
+    </div>
+
+    <script>
+        
+        
+        const submitBtn = document.querySelector('#submitBtn')
+        submitBtn.addEventListener('click',(e)=>{
+            const heightInput = parseFloat(document.getElementById('heightInput').value)
+
+            const weightInput = parseFloat(document.getElementById('weightInput').value)
+            console.log(heightInput)
+            console.log(weightInput)
+
+            const bmi = ((weightInput/heightInput)*100).toFixed(2)
+
+            document.querySelector('#outputBMI').innerHTML = `BMI: <span>${bmi}</span> kg/cm<sup>2</sup>`
+
+            if (bmi<18.5) {
+                const catInfo = document.getElementById('userCategory')
+                catInfo.innerHTML = `Your category: <br><span>Underweight</span>`
+                    console.log(catInfo)
+
+                    catInfo.style.borderColor = 'blue'
+            } else if(18.5<bmi && bmi<24.9 || bmi == 18.5 || bmi == 24.9){
+                const catInfo = document.getElementById('userCategory')
+                catInfo.innerHTML = `Your category: <br><span>Healthy weight</span>`
+                    console.log(catInfo)
+
+                    catInfo.style.borderColor = 'green'
+            } else if (25<bmi && bmi<29.9 || bmi == 25 || bmi == 29.9) {
+                const catInfo = document.getElementById('userCategory')
+                    catInfo.innerHTML = `Your category: <br><span>Overweight</span>`
+                    console.log(catInfo)
+
+                catInfo.style.borderColor = 'yellow'
+            } else if (bmi>30 || bmi == 30) {
+                const catInfo = document.getElementById('userCategory')
+                    catInfo.innerHTML = `Your category: <br><span>Obese</span>`
+                    console.log(catInfo)
+
+                catInfo.style.borderColor = 'red'
+            } else {
+                alert("Something went wrong")
+            }
+
+            
+        })
+    </script>
+</body>
+
+</html>
